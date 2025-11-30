@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-info">
-          <h4>RutujNavLinkNandkhikle</h4>
+          <h4>Rutuja Nandkhile</h4>
           <p>Email: rutujanandkhile17@gmail.com</p>
           <p>Phone: 9356371502</p>
         </div>
@@ -15,15 +15,15 @@ const Footer = () => {
         <div className="footer-social">
           <h4>Follow Me</h4>
           <div className="social-icons">
-            <NavLink To="#" target="_blank" rel="noreferrer">🌐</NavLink>
-            <NavLink To="#" target="_blank" rel="noreferrer">💼</NavLink>
-            <NavLink To="#" target="_blank" rel="noreferrer">🐦</NavLink>
+            <NavLink To="#" target="" rel="noreferrer">🌐</NavLink>
+            <NavLink To="#" target="" rel="noreferrer">💼</NavLink>
+            <NavLink To="#" target="" rel="noreferrer">🐦</NavLink>
           </div>
         </div>
       </div>
 
       <p className="footer-bottom">
-        &copy; {new Date().getFullYear()} RutujNavLinkNandkhikle. All rights reserved.
+        &copy; {new Date().getFullYear()} Rutuja Nandkhile. All rights reserved.
       </p>
     </footer>
   );
