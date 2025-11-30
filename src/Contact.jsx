@@ -18,9 +18,9 @@ const Contact = () => {
         <div className="col-md-4 mb-4">
           <div className="p-4 bg-light rounded shadow text-center">
             <h4>Contact Info</h4>
-            <p><strong>Name:</strong> Rutuja Nandkhikle</p>
-            <p><strong>Email:</strong> rutuja@example.com</p>
-            <p><strong>Phone:</strong> +91 9876543210</p>
+            <p><strong>Name:</strong> Rutuja Nandkhile</p>
+            <p><strong>Email:</strong> rutujanandkhile17@gmail.com</p>
+            <p><strong>Phone:</strong> +91 9356371502</p>
           </div>
         </div>
 
