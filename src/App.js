@@ -6,6 +6,7 @@ import Services from './Services';
 import Projects from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
+import ContactTable from './ContactTable';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/Services' element={<Services />} />
         <Route path='/Projects' element={<Projects />} /> {/* Projects page */}
         <Route path='/Contact' element={<Contact/>} />
+        <Route path='/ContactTable' element={<ContactTable/>} />
       </Routes>
       <Footer />
     </Router>
