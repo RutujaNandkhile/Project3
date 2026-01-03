@@ -15,9 +15,16 @@ const Footer = () => {
         <div className="footer-social">
           <h4>Follow Me</h4>
           <div className="social-icons">
-            <NavLink To="#" target="" rel="noreferrer">🌐</NavLink>
-            <NavLink To="#" target="" rel="noreferrer">💼</NavLink>
-            <NavLink To="#" target="" rel="noreferrer">🐦</NavLink>
+           
+            <NavLink
+        to="https://www.linkedin.com/in/rutuja-nandkhile-14a85933b/"
+        target="_blank"
+        rel="noreferrer"
+        style={{ textDecoration: "none" }}
+      >
+        💼
+      </NavLink>
+            {/* <NavLink To="#" target="" rel="noreferrer">🐦</NavLink> */}
           </div>
         </div>
       </div>

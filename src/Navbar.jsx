@@ -41,6 +41,9 @@ const Navbar = () => {
                <li className="nav-item">
                 <NavLink className="nav-link" to="/Contact">Contact</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/ContactTable">Contact Information</NavLink>
+              </li>
 
             </ul>
           </div>

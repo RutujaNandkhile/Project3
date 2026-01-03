@@ -1,10 +1,65 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    contactableName: "",
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Thank you, your message has been sent!");
+
+    const newRow = { ...formData, date: new Date().toLocaleString() };
+
+    // 1️⃣ Get existing rows
+    const existingRows = JSON.parse(localStorage.getItem("contactRows")) || [];
+
+    // 2️⃣ Add new row
+    const updatedRows = [...existingRows, newRow];
+
+    // 3️⃣ Save to localStorage
+    localStorage.setItem("contactRows", JSON.stringify(updatedRows));
+
+    // 4️⃣ Send email using EmailJS
+    emailjs
+      .send(
+        "service_xxxxxx", // Your EmailJS service ID
+        "template_xxxxxx", // Your EmailJS template ID
+        {
+          contactable_name: formData.contactableName,
+          user_name: formData.name,
+          user_email: formData.email,
+          user_message: formData.message,
+          admin_email: "rutujanandkhile17@gmail.com", // Admin email
+        },
+        "PUBLIC_KEY_xxxxxx" // Your EmailJS public key
+      )
+      .then(() => {
+        alert("Form submitted successfully! Email sent to you and admin.");
+        // Redirect to ContactTable page
+        navigate("/ContactTable");
+      })
+      .catch((err) => {
+        console.error("EmailJS Error:", err);
+        alert(
+          "Form submitted but email failed. Data is saved locally. Check console."
+        );
+        navigate("/ContactTable");
+      
+      });
+
+    // 5️⃣ Clear form
+    setFormData({ contactableName: "", name: "", email: "", message: "" });
   };
 
   return (
@@ -14,54 +69,44 @@ const Contact = () => {
       </h2>
 
       <div className="row justify-content-center">
-        {/* Contact Information */}
-        <div className="col-md-4 mb-4">
-          <div className="p-4 bg-light rounded shadow text-center">
-            <h4>Contact Info</h4>
-            <p><strong>Name:</strong> Rutuja Nandkhile</p>
-            <p><strong>Email:</strong> rutujanandkhile17@gmail.com</p>
-            <p><strong>Phone:</strong> +91 9356371502</p>
-          </div>
-        </div>
-
-        {/* Contact Form */}
         <div className="col-md-6">
           <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message</label>
-              <textarea
-                className="form-control"
-                id="message"
-                rows="5"
-                placeholder="Enter your message"
-                required
-              ></textarea>
-            </div>
-
+            {/* <input
+              id="contactableName"
+              className="form-control mb-2"
+              placeholder="Contactable Name"
+              value={formData.contactableName}
+              onChange={handleChange}
+              required
+            /> */}
+            <input
+              id="name"
+              className="form-control mb-2"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <input
+              id="email"
+              type="email"
+              className="form-control mb-2"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <textarea
+              id="message"
+              className="form-control mb-3"
+              rows="4"
+              placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
             <button type="submit" className="btn btn-danger w-100">
-              Send Message
+              Save
             </button>
           </form>
         </div>
